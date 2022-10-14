@@ -1,14 +1,15 @@
 #!/bin/sh
 
-# config xray
-cat << EOF > /etc/config.json
+#Config xray
+
+rm -rf /etc/xray/config.json
+cat << EOF > /etc/xray/config.json
 {
-  "inbounds":[
+  "inbounds": [
     {
       "port": 8888,
       "protocol": "vmess",
       "settings": {
-        "decryption": "none",
         "clients": [
           {
             "id": "342e3fef-ade1-4c30-86ec-f21695ca9fd4"
@@ -25,8 +26,9 @@ cat << EOF > /etc/config.json
       "protocol": "freedom"
     }
   ]
-}	
+}
 EOF
 
-# run xray
-/usr/bin/xray run -config /etc/config.json
+#run xray
+
+xray -c /etc/xray/config.json
